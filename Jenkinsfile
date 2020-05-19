@@ -7,7 +7,8 @@ podTemplate(label: label, containers: [
   node(label) {
     stage('Run kubectl') {
       container('kubectl') {
-        sh "kubectl get pods --all-namespaces && kubectl apply -f deployment.yaml"
+        checkout scm
+        sh "kubectl apply -f deployment.yaml"
       }
     }
   }
